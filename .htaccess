@@ -1,0 +1,17 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+Options All -Indexes
+
+# Configura una página de error personalizada
+ErrorDocument 404 /view/error404.php
+
+# Acepta la carga actual de archivos y directorios
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# Ruta por defecto si no hay errores
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+
