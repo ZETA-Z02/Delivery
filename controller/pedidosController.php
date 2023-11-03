@@ -1,7 +1,7 @@
 <?php 
-#acciones que se hara en el almacen
+#acciones que se hara con los pedidos, el admin podra visualizar todos los pedidos y hacer acciones como buscar o eliminar(con RESTRICCIONES)
 
-class AlmacenController{
+class PedidosController{
     public function index(){
 
     }

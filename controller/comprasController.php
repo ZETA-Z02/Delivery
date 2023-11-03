@@ -1,7 +1,7 @@
 <?php 
-#acciones que se hara en el almacen
+#acciones que hara el cliente, como comprar y seleccionar Compras usado por el cliente
 
-class AlmacenController{
+class ComprasController{
     public function index(){
 
     }

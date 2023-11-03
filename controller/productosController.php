@@ -1,7 +1,7 @@
 <?php 
-#acciones que se hara en el almacen
+#acciones que se hara con los productos, Pagina Admin Productos
 
-class AlmacenController{
+class ProductosController{
     public function index(){
 
     }

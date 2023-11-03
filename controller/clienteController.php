@@ -1,7 +1,7 @@
 <?php 
-#acciones que se hara en el almacen
+#acciones que que se podra hacer con la informacion del cliente, clienteADmin
 
-class AlmacenController{
+class ClienteController{
     public function index(){
 
     }

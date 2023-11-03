@@ -1,7 +1,7 @@
 <?php 
-#acciones que se hara en el almacen
+#acciones que se hara en el DASHBOARD
 
-class AlmacenController{
+class DashboardController{
     public function index(){
 
     }

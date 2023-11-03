@@ -1,7 +1,7 @@
 <?php 
-#acciones que se hara en el almacen
+#acciones que se hara en el personal, lo que podra hacer el personal, como visualizar los pedidos y demas
 
-class AlmacenController{
+class PersonalController{
     public function index(){
 
     }
@@ -10,13 +10,3 @@ class AlmacenController{
     }
     
 }
-
-
-
-
-
-
-
-
-
-?>

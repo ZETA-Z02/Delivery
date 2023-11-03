@@ -7,8 +7,7 @@ class AlmacenController{
     }
     public function create(){
 
-    }
-    
+    }  
 }
 
 

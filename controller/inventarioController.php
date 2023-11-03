@@ -1,7 +1,7 @@
 <?php 
-#acciones que se hara en el almacen
+#acciones que se hara en el INVENTARIO inventarioADmin
 
-class AlmacenController{
+class InventarioController{
     public function index(){
 
     }

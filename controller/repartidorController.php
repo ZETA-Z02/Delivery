@@ -1,7 +1,7 @@
 <?php 
-#acciones que se hara en el almacen
+#acciones que se hara con el repartidor, Pagina Admin Repartidor, acciones con la info del repartidor
 
-class AlmacenController{
+class RepartidorController{
     public function index(){
 
     }
