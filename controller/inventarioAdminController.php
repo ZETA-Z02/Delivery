@@ -1,7 +1,7 @@
 <?php 
 #acciones que se hara en el INVENTARIO inventarioADmin
 
-class InventarioController{
+class InventarioAdminController{
     public function index(){
 
     }

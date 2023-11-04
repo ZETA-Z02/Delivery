@@ -1,6 +1,6 @@
 <?php include('../other/header.php') ?>
 <main>
-    <h1>Pagina Administrativa: Personal</h1>
+    <h1>Pagina Administrativa: Cliente</h1>
     <div class="table-personal">
         <table>
             <thead>
@@ -42,10 +42,7 @@
                     <input type="text" id="direccion" class="form-control" placeholder="Direccion"></input>
                 </div>
                 <div class="text-field">
-                    <input type="text" id="estado" class="form-control" placeholder="Estado"></input>
-                </div>
-                <div class="text-field">
-                    <input type="text" id="cargo" class="form-control" placeholder="Cargo"></input>
+                    <input type="text" id="correo" class="form-control" placeholder="Correo"></input>
                 </div>
                 <input type="hidden" id="idPersonal">
                 <button type="submit" class="my-form__button">
@@ -83,6 +80,8 @@
     </div>
 
 </main>
+<script src="../assets/js/clienteAdmin.js"></script>
+
 
 <!-- <tr>
                     <td>1</td>

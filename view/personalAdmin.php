@@ -90,6 +90,8 @@
     </div>
 
 </main>
+
+<!-- Como no se usar js en clases, cada vista tendra su propio JS ajax para manejar las peticiones -->
 <script src="../assets/js/personalAdmin.js"></script>
 
 <!-- <tr>
