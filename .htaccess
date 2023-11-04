@@ -13,5 +13,3 @@ RewriteCond %{REQUEST_FILENAME} !-l
 
 # Ruta por defecto si no hay errores
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
-
-

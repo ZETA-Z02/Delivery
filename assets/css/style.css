@@ -265,11 +265,32 @@ body.collapsed .expand-btn svg {
 
 
 /*AJUSTAR CONTENIDO DE CONTAINER-PERSONAL: para que se ajuste el formulario agregar con el buscador*/
-.container-personal {
+/*.container-personal {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* Alinea los elementos en la parte superior */
+  align-items: flex-start;
+}*/
+
+.layout {
+  width: 1366px;
+  height: 768px;
+
+  display: grid;
+  grid-template-rows: repeat(auto-fit, 350px);
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
+
+.layout .layout-grid8{
+  margin-top: 5px;
+  width: 650px;
+  height: 300px;
+  display: grid;
+  grid-template-rows: repeat(auto-fit, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
 .buscar-result{
   margin-top: 10px;
 }
@@ -283,6 +304,7 @@ body.collapsed .expand-btn svg {
   align-items: start;
   background-color: rgb(243, 210, 251);
 }
+
 
 .text-field input {
   color: var(--secondary);
@@ -332,4 +354,6 @@ body.collapsed .expand-btn svg {
   transition: all .3s ease;
   -webkit-transition: all .3s ease;
 }
+
+
 

@@ -20,38 +20,44 @@
         </table>
     </div>
     <!-- contenedor para distribuir el formulario y el buscador  -->
-    <div class="container-personal">
+    <div class="container-personal layout">
         <div class="form-agregar">
             <form action="" id="personal-form">
-                <div class="text-field">
-                    <label for="">
-                        <h3>Agregar-Editar</h3>
-                    </label>
-
-                    <input type="text" id="nombre" placeholder="Nombres" class="form-control">
+                <div class="layout-grid8">
+                    <div class="text-field">
+                        <label for="">
+                            <h3>Agregar</h3>
+                        </label>
+                        <input type="text" id="nombre" placeholder="Nombres" class="form-control">
+                    </div>
+                    <div class="text-field">
+                        <label for="">
+                            <h3>Editar</h3>
+                        </label>
+                        <input type="text" id="apellido" class="form-control" placeholder="Apellidos"></input>
+                    </div>
+                    <div class="text-field">
+                        <input type="text" id="dni" class="form-control" placeholder="DNI"></input>
+                    </div>
+                    <div class="text-field">
+                        <input type="text" id="telefono" class="form-control" placeholder="Telefono"></input>
+                    </div>
+                    <div class="text-field">
+                        <input type="text" id="direccion" class="form-control" placeholder="Direccion"></input>
+                    </div>
+                    <div class="text-field">
+                        <input type="text" id="estado" class="form-control" placeholder="Estado"></input>
+                    </div>
+                    <div class="text-field">
+                        <input type="text" id="cargo" class="form-control" placeholder="Cargo"></input>
+                    </div>
+                    <input type="hidden" id="idPersonal">
+                    <div>
+                        <button type="submit" class="my-form__button">
+                            Guardar
+                        </button>
+                    </div>
                 </div>
-                <div class="text-field">
-                    <input type="text" id="apellido" class="form-control" placeholder="Apellidos"></input>
-                </div>
-                <div class="text-field">
-                    <input type="text" id="dni" class="form-control" placeholder="DNI"></input>
-                </div>
-                <div class="text-field">
-                    <input type="text" id="telefono" class="form-control" placeholder="Telefono"></input>
-                </div>
-                <div class="text-field">
-                    <input type="text" id="direccion" class="form-control" placeholder="Direccion"></input>
-                </div>
-                <div class="text-field">
-                    <input type="text" id="estado" class="form-control" placeholder="Estado"></input>
-                </div>
-                <div class="text-field">
-                    <input type="text" id="cargo" class="form-control" placeholder="Cargo"></input>
-                </div>
-                <input type="hidden" id="idPersonal">
-                <button type="submit" class="my-form__button">
-                    Guardar
-                </button>
             </form>
         </div>
         <div class="buscador">

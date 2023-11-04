@@ -1,4 +1,9 @@
 TABLAS DELIVERY 02/11/23
+
+CREATE DATABASE delivery;
+
+use delivery;
+
 CREATE TABLE clientes(
 id_cliente INT AUTO_INCREMENT,
 nombre VARCHAR(50),

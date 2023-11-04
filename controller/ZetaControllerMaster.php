@@ -71,6 +71,7 @@ if (isset($_GET['actionPersonal']) && !empty($_GET['actionPersonal'])) {
             }else{
                 echo 'no llega los datos a buscar';
             }
+            break;
     }
 }
 // PAGINA CLIENTE ACCIONES, USANDO CLIENTECONTROLLER, CLIENTE ADMIN
