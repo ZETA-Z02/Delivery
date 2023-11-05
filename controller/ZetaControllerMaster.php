@@ -28,8 +28,7 @@ if (isset($_GET['actionPersonal']) && !empty($_GET['actionPersonal'])) {
             }
             break;
         case 'mostrarPersonal':
-            $mostrarPersonal = new PersonalAdminController();
-            $mostrarPersonal->Read();
+            $personalAdmin->Read();
             break;
         case 'personalUnico':
             if (!empty($_POST['id'])) {
@@ -51,35 +50,94 @@ if (isset($_GET['actionPersonal']) && !empty($_GET['actionPersonal'])) {
                 $cargo = $_POST['cargo'];
                 $personalAdmin->update($id, $nombre, $apellido, $dni, $telefono, $direccion, $estado, $cargo);
                 //echo 'llegan todos los datos solicitados y ninguno esta vacio';
-            }else {
+            } else {
                 echo 'alguno de los datos esta vacio o nulos. editar fallo';
             }
-        
+
             break;
         case 'eliminarPersonal':
-            if (!empty($_POST['id'])){
+            if (!empty($_POST['id'])) {
                 $id = $_POST['id'];
                 $personalAdmin->delete($id);
-            }else{
+            } else {
                 echo 'error, no llego el id';
             }
             break;
         case 'buscarPersonal':
-            if(!empty($_POST['buscar'])){
-                $buscarPersonal=$_POST['buscar'];
+            if (!empty($_POST['buscar'])) {
+                $buscarPersonal = $_POST['buscar'];
                 $personalAdmin->buscardor($buscarPersonal);
-            }else{
+            } else {
                 echo 'no llega los datos a buscar';
             }
             break;
     }
 }
+
 // PAGINA CLIENTE ACCIONES, USANDO CLIENTECONTROLLER, CLIENTE ADMIN
 if (isset($_GET['actionCliente']) && !empty($_GET['actionCliente'])) {
     $action = $_GET['actionCliente'];
+    //echo 'accion cliente '.$action;
     $clienteAdmin = new ClienteController();
     switch ($action) {
-        case '':
+        case 'guardarCliente':
+            //echo 'accion Cliente';
+            if (!empty($_POST['nombre']) && !empty($_POST['apellido']) && !empty($_POST['dni']) && !empty($_POST['telefono']) && !empty($_POST['direccion']) && !empty($_POST['correo'])) {
+                $nombre = $_POST['nombre'];
+                $apellido = $_POST['apellido'];
+                $dni = $_POST['dni'];
+                $telefono = $_POST['telefono'];
+                $direccion = $_POST['direccion'];
+                $correo = $_POST['correo'];
+                $clienteAdmin->create($nombre, $apellido, $dni, $telefono, $direccion, $correo);
+                //echo 'llegan todos los datos solicitados y ninguno esta vacio';
+            } else {
+                echo 'alguno de los datos esta vacio o nulos';
+            }
+            break;
+        case 'mostrarCliente':
+            $clienteAdmin->read();
+            break;
+        case 'clienteUnico':
+            if (!empty($_POST['id'])) {
+                $id = $_POST['id'];
+                $clienteAdmin->clienteUnico($id);
+            } else {
+                echo 'error en clienteUnico';
+            }
+            break;
+        case 'editarCliente':
+            if (!empty($_POST['id']) && !empty($_POST['nombre']) && !empty($_POST['apellido']) && !empty($_POST['dni']) && !empty($_POST['telefono']) && !empty($_POST['direccion']) && !empty($_POST['correo'])) {
+                $id = $_POST['id'];
+                $nombre = $_POST['nombre'];
+                $apellido = $_POST['apellido'];
+                $dni = $_POST['dni'];
+                $telefono = $_POST['telefono'];
+                $direccion = $_POST['direccion'];
+                $correo = $_POST['correo'];
+                $clienteAdmin->update($id, $nombre, $apellido, $dni, $telefono, $direccion, $correo);
+                //echo 'llegan todos los datos solicitados y ninguno esta vacio';
+            } else {
+                echo 'alguno de los datos esta vacio o nulos. editar fallo';
+            }
+
+            break;
+        case 'eliminarCliente':
+            if (!empty($_POST['id'])) {
+                $id = $_POST['id'];
+                $clienteAdmin->delete($id);
+            } else {
+                echo 'error, no llego el id';
+            }
+            break;
+        case 'buscarCliente':
+            if (!empty($_POST['buscar'])) {
+                $buscarCliente = $_POST['buscar'];
+                $clienteAdmin->buscardor($buscarCliente);
+            } else {
+                echo 'no llega los datos a buscar';
+            }
             break;
     }
 }
+

@@ -15,13 +15,13 @@
                     <th colspan="2">Acciones</th>
                 </tr>
             </thead>
-            <tbody id="mostrarPersonal"></tbody>
+            <tbody id="mostrarCliente"></tbody>
         </table>
     </div>
     <!-- contenedor para distribuir el formulario y el buscador  -->
     <div class="container-personal">
         <div class="form-agregar">
-            <form action="" id="personal-form">
+            <form action="" id="cliente-form">
                 <div class="text-field">
                     <label for="">
                         <h3>Agregar-Editar</h3>
@@ -44,7 +44,7 @@
                 <div class="text-field">
                     <input type="text" id="correo" class="form-control" placeholder="Correo"></input>
                 </div>
-                <input type="hidden" id="idPersonal">
+                <input type="hidden" id="idCliente">
                 <button type="submit" class="my-form__button">
                     Guardar
                 </button>

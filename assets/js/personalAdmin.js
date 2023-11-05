@@ -23,7 +23,6 @@ $(function () {
           personalBuscado.forEach((personalBus) => {
             console.log(personalBus);
             template += `
-            
                 <tr idpersonal="${personalBus.id}">
                     <td>${personalBus.id}</td>
                     <td>${personalBus.nombre}</td>

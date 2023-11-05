@@ -33,7 +33,7 @@ class PersonalAdminModel{
         return $response;
     }
     public function buscador($buscarPersonal){
-        $sql = "SELECT * FROM personal WHERE nombre LIKE '$buscarPersonal%';";
+        $sql = "SELECT * FROM personal WHERE nombre LIKE '$buscarPersonal%' or id_personal LIKE '$buscarPersonal%';";
         $response = $this->conn->ConsultaCon($sql);
         return $response;
     }
