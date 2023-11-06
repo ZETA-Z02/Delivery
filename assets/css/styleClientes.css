@@ -1,0 +1,113 @@
+/*css clientes*/
+.clientes-main{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(2);
+
+}
+.container-items {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 80px 32px;
+}
+
+ 
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: center;
+  max-width: 1200px;
+  gap: 24px;
+}
+
+.articles article {
+  max-width: 320px;
+  cursor: pointer;
+  position: relative;
+  display: block;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.articles article a {
+  display: inline-flex;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+
+.articles article h2 {
+  margin: 0 0 18px 0;
+  font-size: 1.6rem;
+  color: var(--secondary);
+  transition: color 0.3s ease-out;
+}
+
+
+.articles article img {
+  max-width: 100%;
+  transform-origin: center;
+  transition: transform 0.4s ease-in-out;
+}
+
+.article-preview {
+  padding: 24px;
+  background: white;
+}
+
+.articles figure {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.articles figure img {
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.articles article:hover img {
+  transform: scale(1.5); 
+}
+
+/*button para seleccion producto*/
+
+/*BUTTON*/
+
+.button {
+  border: 0px solid;
+  outline: 2px solid;
+  color: rgb(19, 13, 205);
+  outline-color: rgb(21, 70, 205);
+  outline-offset: 0px;
+  text-shadow: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 2.5rem;
+  max-width: 160px; 
+  width: 100%; 
+  letter-spacing: 0.3rem;
+  font-weight: 600;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  transition: all 550ms cubic-bezier(
+      .36,.63,.5,.73
+  );
+}
+
+.button:hover {
+  border: 2px solid var(--accent);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  color: var(--accent);
+}
