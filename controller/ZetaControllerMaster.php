@@ -3,6 +3,7 @@
 #AQUI LLEGARAN LAS SOLICITUDES AJAX Y SE UTILIZARAN LAS CLASES DE LOS CONTROLLADORES PARA HACER LAS ACCIONES
 require_once("./personalAdminController.php");
 require_once("./clienteController.php");
+require_once("./comprasController.php");
 
 // cada pagina enviara por la url un dato distinto para que se obtenga aqui y se maneje ordenadamente todas las acciones
 
@@ -141,3 +142,17 @@ if (isset($_GET['actionCliente']) && !empty($_GET['actionCliente'])) {
     }
 }
 
+//Pagina Compras Acciones, acciones deben ser con una SESSION INICIADA
+if (!empty($_GET['actionCompras']) && !empty($_GET['actionCompras'])) {
+    $action = $_GET['actionCompras'];
+    //echo 'accion cliente '.$action;
+    $comprasView = new ComprasController();
+    switch ($action) {
+        case 'mostrarCompras':
+            //echo $action;
+            $comprasView->index();
+            break;
+    }
+
+}
+?>

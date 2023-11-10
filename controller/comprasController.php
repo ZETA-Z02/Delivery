@@ -10,17 +10,24 @@ class ComprasController{
     //ESTE METODO MUESTRA TODO EN EL INDEX DE COMPRAS-LOS PRODUCTOS DISPONIBLES DEL ALMACEN
     public function index(){
         $consulta = $this->consultaAccion->Read();
-        while($datos=mysqli_fetch_assoc($consulta)){
-            $cantidad = $datos["cantidad"];
-            $idProducto = $datos["id_producto"];
-            $nombre = $datos["nombre"];
-            $descripcion = $datos["descripcion"];
-            $marca = $datos["marca"];
-            $contenido = $datos["contenido"];
-            $unidades = $datos["unidades"];
-            $precio = $datos["precio"];
-            $imagen = $datos["imagen"];
+        //METER TODO EN UN JSON PARA QUE SE MEUSTRE LOS DATOS BIEN
+        $json = array();
+        while($datos=mysqli_fetch_array($consulta)){
+            $json[]=array(
+                "cantidad"=> $datos["cantidad"],
+                "id_producto"=> $datos["id_producto"],
+                "nombre"=> $datos["nombre"],
+                "descripcion"=> $datos["descripcion"],
+                "marca"=> $datos["marca"],
+                "contenido"=> $datos["contenido"],
+                "unidades"=> $datos["unidades"],
+                "precio"=> $datos["precio"],
+                "imagen"=> $datos["imagen"],
+            );
+            //estos son los datos que vienen de la BD
         }
+        $jsonResponse = json_encode($json);
+        echo $jsonResponse;
     }
     public function create(){
 
@@ -28,12 +35,6 @@ class ComprasController{
     
 }
 
+// $re= new ComprasController();
+// $re->index();
 
-
-
-
-
-
-
-
-?>

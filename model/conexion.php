@@ -58,7 +58,7 @@ class Conexion
       echo 'Excepción: ',  $e->getMessage();
     }
 
-    $data = $result->fetch_array(MYSQLI_ASSOC);
+    $data = $result->fetch_array (MYSQLI_ASSOC);
     return $data;
     mysqli_close($this->conn);
   }
