@@ -47,6 +47,7 @@ $(function () {
   //script para obtener los datos del producto y seleccionarlo para enviarlos a la base de datos como pedido
   //DEVE MOSTRAR EL PRECIO, SUBTOTAL Y LA CANTIDAD QUE QUIERE EL CLIENTE
   var carrito = [];
+  
   $(document).on("click", ".button", function () {
     let idproducto = $(this).closest("article").attr("idproducto");
     //find busca dentro article(etiqueta html) el contenido y su id y despues con attr seleccionamos el valor de esa id(atributo)
@@ -90,8 +91,10 @@ $(function () {
       // let precio = $("#precioUni").val();
       // total = total + precio * cantidad
       // console.log(total);
+      if(carrito.nombre == ''){
+        console.log('se repite');
+      }
       $("#shoppingCar").append(template);
     // });
-    
   }
 });
