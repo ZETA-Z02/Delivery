@@ -7,6 +7,7 @@ require_once("./productosController.php");
 require_once("./almacenController.php");
 require_once("./repartidorAdminController.php");
 require_once("./comprasController.php");
+require_once("./loginController.php");
 
 
 // cada pagina enviara por la url un dato distinto para que se obtenga aqui y se maneje ordenadamente todas las acciones
@@ -154,7 +155,7 @@ if (isset($_GET['actionProductos']) && !empty($_GET['actionProductos'])) {
     switch ($action) {
         case 'guardarProducto':
             //echo 'accion Cliente';
-            if (!empty($_POST['nombre']) && !empty($_POST['descripcion']) && !empty($_POST['marca']) && !empty($_POST['contenido']) && !empty($_POST['unidades']) && !empty($_POST['precio']) && !empty($_POST['imagen'])) {
+            if (!empty($_POST['nombre']) && !empty($_POST['descripcion']) && !empty($_POST['marca']) && !empty($_POST['contenido']) && !empty($_POST['unidades']) && !empty($_POST['precio']) || !empty($_POST['imagen'])) {
                 $nombre = $_POST['nombre'];
                 $descripcion = $_POST['descripcion'];
                 $marca = $_POST['marca'];
@@ -303,7 +304,32 @@ if (!empty($_GET['actionCompras']) && !empty($_GET['actionCompras'])) {
             //echo $action;
             $comprasView->index();
             break;
+        case 'pedidoEnviado':
+            $pedidoArray = $_POST['data'];
+            echo $pedidoArray['descripcion'].' '.$pedidoArray['opcion_pago'].' '.$pedidoArray['totalJavas'].' '.$pedidoArray['productos'].' '.'nada';
+            //$comprasView->pedido();
+            break;
     }
+}
 
+//PAGINA LOGIN ACCIONES- PARA INGRESAR Y DECLARAR LA VARIABLE SESSION DEPENDIENDO EL NIVEL DE USUARIO
+//SE PODRIA UTILIZAR ESTE MISMO PARA CERRAR SESION, CON EL MISMO CONTROLLADOR LOGIN-EXIT
+if (!empty($_GET['actionLogin']) && !empty($_GET['actionLogin'])) {
+    $action = $_GET['actionLogin'];
+    //echo 'accion login '.$action;
+    $loginView = new LoginController();
+    switch ($action) {
+        case 'LogIn':
+            //echo $action.' llega los datos y se validara al usuario '.$_POST['username'].'-'.$_POST['password'];
+            if(!empty($_POST['username']) && !empty($_POST['password'])){
+                $usuario = trim($_POST['username']);
+                $password = trim($_POST['password']);
+                //aqui debe devolver la ruta dependiendo el nivel de usuario
+                $loginView->login($usuario,$password);
+            } else {
+                echo 'alguno de los datos esta vacio o nulos';
+            }            
+            break;
+    }
 }
 ?>

@@ -1,11 +1,8 @@
 $(function () {
-  let edit = false;
-
-  console.log("hello world, funciona jquery!!!");
-  //$('#task-result').hide();
-  mostrarCompras();
-
-  function mostrarCompras() {
+  console.log("Jquery Ready, Page Compras xd");
+  let carrito = [];
+  //Renderiza y muestra los productos de la base de datos, solo los disponibles
+  function mostrarProductos() {
     $.ajax({
       url: "http://localhost/delivery/controller/ZetaControllerMaster.php?actionCompras=mostrarCompras",
       type: "GET",
@@ -15,7 +12,7 @@ $(function () {
         let template = "";
         //deberia mostrar todo USAR UN FOR PARA MOSTRAR LOS ELEMENTOS
         productos.forEach((producto) => {
-          template += `<article idproducto="${producto.id_producto}">
+          template += `<article>
                             <figure>
                                 <img src="${producto.imagen}" alt='Preview'>
                             </figure>
@@ -24,7 +21,7 @@ $(function () {
                                   ${producto.nombre}
                                 </h2>
                                 <p>
-                                 ${producto.descripcion}
+                                  ${producto.descripcion}
                                 </p><br>
                                 <p idContenido="${producto.contenido}">
                                 ${producto.contenido}
@@ -32,7 +29,7 @@ $(function () {
                                 <p idPrecio="${producto.precio}">
                                 precio: s/.${producto.precio}
                                 </p><br>
-                                <button class='button' title='Learn'>
+                                <button class='button' title='Learn' idproducto="${producto.id_producto}">
                                     COMPRAR
                                 </button>
                             </div>
@@ -44,57 +41,191 @@ $(function () {
     });
   }
 
-  //script para obtener los datos del producto y seleccionarlo para enviarlos a la base de datos como pedido
-  //DEVE MOSTRAR EL PRECIO, SUBTOTAL Y LA CANTIDAD QUE QUIERE EL CLIENTE
-  var carrito = [];
-  
-  $(document).on("click", ".button", function () {
-    let idproducto = $(this).closest("article").attr("idproducto");
-    //find busca dentro article(etiqueta html) el contenido y su id y despues con attr seleccionamos el valor de esa id(atributo)
-    let nombre = $(this).closest("article").find("h2[Nombre]").attr("Nombre");
-    let contenido = $(this).closest("article").find("p[idContenido]").attr("idContenido");
-    let precio = $(this).closest("article").find("p[idPrecio]").attr("idPrecio");
-    //comprobamos si estoy obteniendo los datos
-    // console.log('clicked-seleccionando producto');
-    // console.log($(this));
-    console.log(nombre + " " + contenido + " " + precio);
-    // Aquí puedes agregar el producto a tu array de pedido o realizar otras acciones, por ejemplo, mostrarlo en el contenedor de productos seleccionados.
-    let productoSeleccionado = {
-      id: idproducto,
-      nombre: nombre,
-      contenido: contenido,
-      precio: precio,
-    };
-    carrito.push(productoSeleccionado);
-    //pedido.push({ id: idproducto });
-    //console.log(pedido);
+  function addProductosCarrito(evento) {
+    const idProducto = evento.target.getAttribute("idproducto");
+    //console.log(carrito);
+    // Verificamos si el producto ya está en el carrito
+    const articleProduct = document.querySelector(".carritoProducts");
+
+    articleProduct.innerHTML = "";
+
+    if (!carrito.includes(idProducto)) {
+      carrito.push(idProducto);
+      mostrarCarrito();
+    } else {
+      mostrarCarrito();
+    }
+  }
+  function mostrarCarrito() {
+    const carritoSinDuplicados = [...new Set(carrito)];
+    //obtenemos los productos de la base de datos
+    $.ajax({
+      url: "http://localhost/delivery/controller/ZetaControllerMaster.php?actionCompras=mostrarCompras",
+      type: "GET",
+      success: function (response) {
+        //console.log(response);
+        const productosBaseDatos = JSON.parse(response);
+        //desde aqui se quita duplicados se aumenta productos al carrito y se renderiza el carrito
+        carritoSinDuplicados.forEach((item) => {
+          const miItem = productosBaseDatos.find((itemBaseDatos) => {
+            return itemBaseDatos.id_producto == parseInt(item);
+          });
+          //console.log(miItem.id_producto);
+          let template = `
+              <tr idProducto="${miItem.id_producto}">
+                <th>${miItem.nombre}</th>
+                <th>${miItem.contenido}</th>
+                <th id="precioUni">${miItem.precio}</th>
+                <th><input class="cantidad" id="cantidad" type="number" min="1" value="1"></th>
+                <th class="subtotal">${miItem.precio}</th>
+                <th><button class="eliminar" idBtnProducto="${miItem.id_producto}">eliminar</button></th>
+              </tr>
+              `;
+          $("#shoppingCar").append(template);
+        });
+        calcularTotal();
+      },
+    });
+  }
+  function calcularTotal() {
+    const totalProduct = document.querySelector("#total-enviar");
+    totalProduct.innerHTML = "";
+    const subtotals = $(".subtotal");
+    const quantities = $(".cantidad");
+
+    let total = 0;
+    let totalQuantity = 0;
+
+    subtotals.each(function (index) {
+      const subtotal = parseFloat($(this).text());
+      const quantity = parseInt(quantities.eq(index).val());
+
+      if (!isNaN(subtotal) && !isNaN(quantity)) {
+        total += subtotal * quantity;
+        totalQuantity += quantity;
+      }
+    });
+
+    var cantidadProductos = $("#shoppingCar").find("tr").length;
+
+    template = `<h1>Total Carrito</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>total Productos</th>
+                        <th>cantidad total de javas</th>
+                        <th>Comentario</th>
+                        <th>Metodo Pago</th>
+                        <th>Total</th>
+                        <th>Cancelar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>${cantidadProductos} productos</th>
+                        <th id="totalJavas">${totalQuantity}</th>
+                        <th><input type="text" id="descripcion" placeholder="ejem. casa azul"></th>
+                        <th><select name="opcion_pago" id="opcion_pago">
+                              <option value="boleta">boleta</option>
+                              <option value="factura">factura</option>
+                            </select>
+                        </th>
+                        <th id="totalPagar">S/${total.toFixed(2)}</th>
+                        <th><button class="cancelar" href="">Cancelar</button></th>
+                    </tr>
+                </tbody>
+              </table>
+              `;
+    $("#total-enviar").append(template);
+  }
+
+  //Para borrar un solo producto-items del carrito
+  function borrarItemCarrito(evento) {
+    const idProducto = evento.target.getAttribute("idBtnProducto");
+    // Filtrar el carrito para mantener solo los productos que no tienen el ID proporcionado
+    carrito = carrito.filter((productoId) => productoId !== idProducto);
+    // Volver a renderizar el carrito
+    const articleProduct = document.querySelector(".carritoProducts");
+    articleProduct.innerHTML = "";
+    mostrarCarrito();
+  }
+
+  //Para cancelar pedido, calcelar el carrito
+  function vaciarCarrito() {
+    // Limpiamos los productos guardados
+    carrito = [];
     console.log(carrito);
-    mostrarProductoSeleccionado(productoSeleccionado);
+    const articleProduct = document.querySelector(".carritoProducts");
+    articleProduct.innerHTML = "";
+    // Renderizamos los cambios
+    mostrarCarrito();
+  }
+  $(document).on("click", ".eliminar", borrarItemCarrito);
+  $(document).on("click", ".cantidad", calcularTotal);
+  $(document).on("click", ".cancelar", vaciarCarrito);
+  //Evento click para anadir mas productos al carrito - COMPRAR
+  $(document).on("click", ".button", addProductosCarrito);
+  //Evento para hallar subtotal
+  $(document).on("input", "#shoppingCar input[id='cantidad']", function () {
+    // Obtener el tr (fila) que contiene el input
+    const fila = $(this).closest("tr");
+    // Obtener el precio unitario y la cantidad
+    const precioUnitario = parseFloat(fila.find("#precioUni").text());
+    const cantidad = parseInt($(this).val());
+    // Calcular el subtotal
+    const subtotal = precioUnitario * cantidad;
+    // Actualizar el subtotal en la fila
+    fila.find("#subtotal").text(subtotal.toFixed(2));
+    // Recalcular y mostrar el total general
   });
 
-  function mostrarProductoSeleccionado(carrito) {
-    console.log(carrito.nombre);
-    console.log(carrito.contenido);
-    console.log(carrito.precio);
-    // carrito.forEach(function(producto){
-      let template = `
-      <tr idPedido="${carrito.id}">
-        <th>${carrito.nombre}</th>
-        <th>${carrito.contenido}</th>
-        <th id="precioUni">${carrito.precio}</th>
-        <th><input id="cantidad" type="number" min="1" value="1"></th>
-        <th id="total">12.00</th>
-        <th><button>eliminar</button></th>
-      </tr>
-      `;
-      // let cantidad = $("#cantidad").val();
-      // let precio = $("#precioUni").val();
-      // total = total + precio * cantidad
-      // console.log(total);
-      if(carrito.nombre == ''){
-        console.log('se repite');
-      }
-      $("#shoppingCar").append(template);
-    // });
-  }
+  mostrarProductos();
+
+  $(document).on("click", ".btn-pagar", function () {
+    const descripcion = $("#descripcion").val();
+    const opcion_pago = $("#opcion_pago").val();
+    const totalJavas = $("#totalJavas").text();
+    const productos = $("tr[idProducto]");
+    const datos = {
+      descripcion: descripcion,
+      opcion_pago: opcion_pago,
+      totalJavas: totalJavas,
+      productos: {},
+    };
+    //console.log(datos);
+    // Iterar sobre los elementos y agregar al objeto
+    productos.each(function () {
+      const idProducto = $(this).attr("idProducto");
+      const cantidad = $(this).find(".cantidad").val();
+
+      // Agregar al objeto productos
+      datos.productos[idProducto] = cantidad;
+    });
+    //se obtiene los datos necesarios para enviar al servidor
+    // console.log(descripcion);
+    // console.log(opcion_pago);
+    // console.log(totalJavas);
+    // console.log(datos);
+    if (totalJavas == 0) {
+      alert('no hay ningun producto seleccionado');
+    } else {
+      $.ajax({
+        url: "http://localhost/delivery/controller/ZetaControllerMaster.php?actionCompras=pedidoEnviado",
+        method: "POST",
+        data: { data: datos },
+        success: function (response) {
+          console.log(response);
+          
+          //limpia el carrito al enviar correctamente el pedido
+          $(".carritoProducts").empty();
+          $(".total-enviar").empty();
+          carrito=[];
+        },
+        error: function () {
+          //un alert o otro mensaje para decir que se cancelo todo
+          console.log("error en el servidor no se envia datos");
+        },
+      });
+    }
+  });
 });

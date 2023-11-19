@@ -1,4 +1,6 @@
-<?php include("../other/headerMain.php") ?>
+<?php include("../other/headerMain.php");
+session_start();
+?>
 <div class="clientes-main">
     <div class="container-items">
         <div class="centering">
@@ -39,12 +41,12 @@
                         <th>nombre</th>
                         <th>contenido</th>
                         <th>precio unitario</th>
-                        <th>cantidad total</th>
+                        <th>cantidad parcial</th>
                         <th>subtotal</th>
                         <th>eliminar</th>
                     </tr>
                 </thead>
-                <tbody id="shoppingCar">
+                <tbody id="shoppingCar" class = "carritoProducts">
                     <tr>
                         <th>loa</th>
                         <th>4</th>
@@ -56,21 +58,22 @@
                 </tbody>
             </table>
         </div>
-        <div class="pagar">
-            <div class="botton">
-                <button class="btn">PAGAR</button>
-                <span>total: <input type="text"></span>
-            </div>
-
+        <div class="total-enviar" id="total-enviar">
 
         </div>
+        <?php if($_SESSION['usuario']=='cliente'){?>
+            <div class="pagar">
+                <div class="botton">
+                    <button class="btn-pagar">PAGAR</button>
+                </div>
+            </div>
+        <?php } ?>
+        
 
     </div>
-    <!-- <div class="secundario2">
-        wefew
-
-
-    </div> -->
 </div>
+
+
+
 <script src="../assets/js/comprasView.js"></script>
 <?php include("../other/footerMain.php") ?>

@@ -83,4 +83,26 @@
 - id_pedido **(FK): INT**
 - id_producto **(FK): INT**
 - cantidad: **INT**
+- unidad_medida: **VARCHAR(20)**
+- precio: **DOUBLE(8,2)**
+- subtotal: **DOUBLE(8,2)**
+
+
+### Entidad Venta
+
+- id_venta **(PK): INT AUTO INCREMENT UNIQUE**
+- id_cliente **(FK): INT**
+- descripcion: **VARCHAR(80)**
+- destino: **VARCHAR(80)**
+- estado: **VARCHAR(15)**
+- fecha: **DATE Y-m-d**
+- hora: **TIME H-i-s**
+- opcion_pago: **VARCHAR(20)**
+
+### Entidad VentaDetalle
+
+- id_detalleV **(PK): INT AUTO INCREMENT UNIQUE**
+- id_venta **(FK): INT**
+- id_producto **(FK): INT**
+- cantidad: **INT**
 - subtotal: **DOUBLE(8,2)**

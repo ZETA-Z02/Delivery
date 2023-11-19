@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+:root {
+    --primary: #DD946F ;
+    --primary-hover: #CD7D7C;                
+    --secondary: #EFD0F8;
+    --secondary-hover: #B8A1D9;
+    --aura: #9265CA80;
+    --background: #261E5A;
+}
+
+.containerLogin{
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+.error{
+    border: 2px solid var(--background);
+    background-color: #e61919;
+    color: black;
+    min-height: 40px;
+    min-width: 500px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/*LOGIN CSS*/
+.backgroundLogin {
+    content: "";
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+    background-image: url(../images/universe.jpg);
+    /* https://www.freepik.com/free-vector/gradient
+       -galaxy-background_14658088.htm optimize in prod*/
+    opacity: 1;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: auto;
+
+}
+
+.centeringLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.my-formLogin {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 16px;
+    background-color: var(--background);
+    border: 1px solid var(--primary);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px var(--aura);
+    min-width: 280px;
+    max-width: 460px;
+    width: 100%;
+    padding: 32px;
+}
+
+.login-welcome {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.login-welcome-row {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.my-form__button {
+    background-color: var(--primary);
+    color: var(--background);
+    white-space: nowrap;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    line-height: 50px;
+    outline: none;
+    font-size: 18px;
+    letter-spacing: .025em;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 800;
+    min-height: 50px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.15);
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+}
+
+.text-fieldLogin input {
+    color: var(--secondary);
+    font-size: 16px;
+    font-weight: 500;
+    max-width: 100%;
+    width: 100%;
+    border: 1px solid var(--secondary);
+    height: 50px;
+    letter-spacing: .03rem;
+    background-color: transparent;
+    outline: none;
+    transition: .25s;
+    border-radius: 8px;
+    text-indent: 20px;
+    margin-top: 8px;
+}
+
+
+.my-form__button:hover {
+    background-color: var(--primary-hover);
+}
+
+.text-fieldLogin {
+    position: relative;
+}
+
+.text-fieldLogin input::-webkit-input-placeholder { /* Edge */
+    color: var(--secondary-hover);
+}
+
+.text-fieldLogin img {
+    position: absolute;
+    right: -2px;
+    bottom: -4px;
+    width: 30px;
+    height: 30px;
+    transform: translate(-50%,-50%);
+    transform-origin: center;
+}
+
+.text-fieldLogin input:focus {
+    border: 1px solid var(--primary);
+}
+
+.text-fieldLogin label {
+    color: var(--secondary);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .03rem;
+    z-index: 10;
+}
+
+.input-icon {
+    position: absolute;
+    bottom: 0;
+    top: 55%;
+    right: 8px;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+}
+
+.my-form__actions {
+    display: flex;
+    flex-direction: column;
+    color: var(--secondary);
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.my-form__actions a {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.my-form__actions a:hover {
+    color: #a7a2cb;               
+}
+
+.my-form__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.my-form__signup {
+    display: flex;
+    justify-content: center;
+}
+
+.my-form__signup a {
+    color: var(--primary);
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.my-form__signup a:hover {
+    color: var(--primary-hover);
+}
+/*REGISTRO CSS*/
+
+.container-registro{
+    position: relative;
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    z-index: 1;
+}
+
+.containerRegister{
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+
+}
+
+.containerRegister p{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.containerRegister span{
+    font-size: 12px;
+}
+
+.containerRegister a{
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.containerRegister button{
+    background-color: #512da8;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.containerRegister button.hidden{
+    background-color: transparent;
+    border-color: #fff;
+}
+
+.containerRegister form{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.containerRegister input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.containerRegister.active .sign-in{
+    transform: translateX(100%);
+}
+
+.sign-up{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.containerRegister.active .sign-up{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.social-icons{
+    margin: 20px 0;
+}
+
+.social-icons a{
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+    width: 40px;
+    height: 40px;
+}
+
+.toggle-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.containerRegister.active .toggle-container{
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle{
+    background-color: #512da8;
+    height: 100%;
+    background: linear-gradient(to right, #5c6bc0, #512da8);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.containerRegister.active .toggle{
+    transform: translateX(50%);
+}
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left{
+    transform: translateX(-200%);
+}
+
+.containerRegister.active .toggle-left{
+    transform: translateX(0);
+}
+
+.toggle-right{
+    right: 0;
+    transform: translateX(0);
+}
+
+.containerRegister.active .toggle-right{
+    transform: translateX(200%);
+}
+

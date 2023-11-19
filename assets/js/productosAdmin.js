@@ -31,7 +31,7 @@ $(function () {
                       <td>${productoBus.contenido}</td>
                       <td>${productoBus.unidades}</td>
                       <td>${productoBus.precio}</td>
-                      <td>${productoBus.imagen}</td>
+                      <td><img src="${productoBus.imagen}" alt='Preview'></td>
                       <td><a href="#" class="editar-producto">editar</a></td>
                       <td><button class="eliminar-producto">eliminar</button></td>
                   </tr>
@@ -93,7 +93,7 @@ $(function () {
                       <td>${producto.contenido}</td>
                       <td>${producto.unidades}</td>
                       <td>${producto.precio}</td>
-                      <td>${producto.imagen}</td>
+                      <td><img src="${producto.imagen}" alt='Preview' class="img-producto"></td>
                       <td><a href="#" class="editar-producto">editar</a></td>
                       <td><button class="eliminar-producto">eliminar</button></td>
                   </tr>

@@ -357,3 +357,12 @@ body.collapsed .expand-btn svg {
 
 
 
+/* img redimensionar para mostrar*/
+
+.img-producto{
+  width: 70px; /* Tamaño deseado en píxeles */
+  height: auto; /* Se mantiene la proporción original */
+}
+
+
+

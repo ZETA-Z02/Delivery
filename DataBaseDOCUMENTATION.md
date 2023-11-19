@@ -76,6 +76,8 @@
 - fecha **---DATE Y-m-d** --->fecha de efectuado el pedido
 - hora **---TIME H-i-s** --->hora de efectuado el pedido
 - opcion_pago **---VARCHAR(20)** --->boleta, efectivo, tarjeta
+- cantidad_total
+- total_pagar 
 
 ### Entidad DetallePedido
 

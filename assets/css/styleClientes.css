@@ -48,7 +48,7 @@
 .articles article h2 {
   margin: 0 0 18px 0;
   font-size: 1.6rem;
-  color: var(--secondary);
+  /* color: var(--secondary); */
   transition: color 0.3s ease-out;
 }
 
@@ -122,7 +122,7 @@
   height: 100%;
   min-height: 200px;
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 0.5fr);
   grid-template-columns: 1fr;
   gap: 8px;
 }
@@ -154,7 +154,7 @@ tbody tr:nth-child(even) {
   text-align: center;
 }
 
-.btn{  
+.btn-pagar{  
   border-radius: 4px;
   height: 44px;
   font-size: 13px;
@@ -171,7 +171,7 @@ tbody tr:nth-child(even) {
   background-color: #ffeba7;
   color: #000000;
 }
-.btn:hover{  
+.btn-pagar:hover{  
   background-color: #000000;
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);

@@ -1,4 +1,5 @@
 <?php 
+session_start();
 #acciones que hara el cliente, como comprar y seleccionar Compras usado por el cliente
 require_once("../model/comprasModel.php");
 class ComprasController{
@@ -29,8 +30,8 @@ class ComprasController{
         $jsonResponse = json_encode($json);
         echo $jsonResponse;
     }
-    public function create(){
-
+    public function pedido(){
+        echo $_SESSION['usuario'];
     }
     
 }
