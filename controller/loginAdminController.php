@@ -23,13 +23,38 @@ class LoginAdminController {
         $jsonData=json_encode($json);
         echo $jsonData;
     }
-    public function Create() {
-        
+    public function readPersonal() {
+        $data = $this->consultaAccion->ReadPersonal();
+        $json = array();
+        while($row = $data->fetch_array(MYSQLI_ASSOC)){
+            $json[]=array(
+                "id_personal"=>$row['id'],
+                "nombres"=>$row['nombres'],
+            );
+        }
+        $jsonData=json_encode($json);
+        echo $jsonData;
     }
-    public function Update() {
+    public function create($usuario,$password,$id_personal,$nivel) {
+        //echo $usuario.' '.$password.' '.$id_personal.' '.$nivel;
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+        $result = $this->consultaAccion->Create($usuario,$passwordHash,$id_personal,$nivel);
+        if($result){
+            echo 'datos insertados correctamente';
+        }else{
+            echo 'fallo la insercion';
+        }
+    }
+    public function loginUnico($id){
+        $data = $this->consultaAccion->LoginUnico($id);
+        $jsonData = json_encode($data);
+        echo $jsonData;
+    }
+    public function update() {
+
                 
     }
-    public function Delete() {
+    public function delete() {
         
     }
 }

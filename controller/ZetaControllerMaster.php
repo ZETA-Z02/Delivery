@@ -193,7 +193,7 @@ if (isset($_GET['actionProductos']) && !empty($_GET['actionProductos'])) {
                 $unidades = $_POST['unidades'];
                 $precio = $_POST['precio'];
                 $imagen = $_POST['imagen'];
-                $productoAdmin->update($id, $nombre, $descripcion, $marca, $contenido, $unidades, $precio,$imagen);
+                $productoAdmin->update($id, $nombre, $descripcion, $marca, $contenido, $unidades, $precio, $imagen);
                 //echo 'llegan todos los datos solicitados y ninguno esta vacio';
             } else {
                 echo 'alguno de los datos esta vacio o nulos. editar fallo';
@@ -307,15 +307,15 @@ if (isset($_GET['actionCompras']) && !empty($_GET['actionCompras'])) {
             $comprasView->index();
             break;
         case 'pedidoEnviado':
-                $pedido = $_POST['data'];
-                //datos
-                $descripcion = $pedido['descripcion'];
-                $opcionPago = $pedido['opcion_pago'];
-                $totalJavas = $pedido['totalJavas'];
-                $productos = $pedido['productos'];
-                //echo $descripcion.' '.$opcionPago.' '.$totalJavas.' '.$productos;
-                //public function pedido($opcionPago,$totalJavas,$descripcion = null)
-                $comprasView->pedido($opcionPago,$totalJavas,$descripcion,$productos);
+            $pedido = $_POST['data'];
+            //datos
+            $descripcion = $pedido['descripcion'];
+            $opcionPago = $pedido['opcion_pago'];
+            $totalJavas = $pedido['totalJavas'];
+            $productos = $pedido['productos'];
+            //echo $descripcion.' '.$opcionPago.' '.$totalJavas.' '.$productos;
+            //public function pedido($opcionPago,$totalJavas,$descripcion = null)
+            $comprasView->pedido($opcionPago, $totalJavas, $descripcion, $productos);
             break;
     }
 }
@@ -329,14 +329,14 @@ if (isset($_GET['actionLogin']) && !empty($_GET['actionLogin'])) {
     switch ($action) {
         case 'LogIn':
             //echo $action.' llega los datos y se validara al usuario '.$_POST['username'].'-'.$_POST['password'];
-            if(!empty($_POST['username']) && !empty($_POST['password'])){
+            if (!empty($_POST['username']) && !empty($_POST['password'])) {
                 $usuario = trim($_POST['username']);
                 $password = trim($_POST['password']);
                 //aqui debe devolver la ruta dependiendo el nivel de usuario
-                $loginView->login($usuario,$password);
+                $loginView->login($usuario, $password);
             } else {
                 echo 'alguno de los datos esta vacio o nulos';
-            }            
+            }
             break;
     }
 }
@@ -345,7 +345,7 @@ if (isset($_GET['actionLogin']) && !empty($_GET['actionLogin'])) {
 if (isset($_GET['actionInventario']) && !empty($_GET['actionInventario'])) {
     $action = $_GET['actionInventario'];
     //echo 'accion inventario '.$action;
-    $inventarioAdmin= new InventarioAdminController();
+    $inventarioAdmin = new InventarioAdminController();
     switch ($action) {
         case 'mostrarInventario':
             $inventarioAdmin->read();
@@ -359,42 +359,51 @@ if (isset($_GET['actionInventario']) && !empty($_GET['actionInventario'])) {
             $inventarioAdmin->readRepartidores();
             break;
         case 'guardarInventario':
-            if(!empty($_POST['producto']) && !empty($_POST['repartidor']) && !empty($_POST['cantidad']) && !empty($_POST['fecha'])){
-                $inventarioAdmin->create($_POST['producto'],$_POST['fecha'],$_POST['cantidad'],$_POST['repartidor']);
-            }else{
+            if (!empty($_POST['producto']) && !empty($_POST['repartidor']) && !empty($_POST['cantidad']) && !empty($_POST['fecha'])) {
+                $inventarioAdmin->create($_POST['producto'], $_POST['fecha'], $_POST['cantidad'], $_POST['repartidor']);
+            } else {
                 echo "error: datos vacios";
             }
             break;
-        
     }
 }
 
 //PAGINA LOGIN ADMIN PARA CRUD DE LOGIN Y REGISTRAR LOGIN DE UN NUEVO PERSONAL
 if (isset($_GET['actionLoginAdmin']) && !empty($_GET['actionLoginAdmin'])) {
     $action = $_GET['actionLoginAdmin'];
-    echo 'accion login '.$action;
+    //echo 'accion login '.$action;
     $loginAdmin = new LoginAdminController();
     switch ($action) {
         case 'mostrarLogin':
-            echo 'mostrar login';
-            // $loginAdmin->read();
+            //echo 'mostrar login';
+            $loginAdmin->read();
             break;
-        case 'mostrarProductos':
+        case 'mostrarPersonalLogin':
             //echo 'llega';
-            $inventarioAdmin->readProductos();
+            $loginAdmin->readPersonal();
             break;
-        case 'mostrarRepartidores';
-            //echo 'llega param ostrar repartidores';
-            $inventarioAdmin->readRepartidores();
-            break;
-        case 'guardarInventario':
-            if(!empty($_POST['producto']) && !empty($_POST['repartidor']) && !empty($_POST['cantidad']) && !empty($_POST['fecha'])){
-                $inventarioAdmin->create($_POST['producto'],$_POST['fecha'],$_POST['cantidad'],$_POST['repartidor']);
-            }else{
+        case 'guardarLogin':
+            if (!empty($_POST['usuario']) && !empty($_POST['password']) && !empty($_POST['id_personal']) && !empty($_POST['nivel'])) {
+                $loginAdmin->create($_POST['usuario'], $_POST['password'], $_POST['id_personal'], $_POST['nivel']);
+            } else {
                 echo "error: datos vacios";
             }
             break;
-        
+        case 'unicoLogin':
+            if (isset($_POST['id']) && !empty('id')) {
+                $id = $_POST['id'];
+                $loginAdmin->loginUnico($id);
+            } else {
+                echo 'no llega el id login';
+            }
+            break;
+        case 'editarLogin':
+            if (isset($_POST['id']) && !empty('id')) {
+                $id = $_POST['id'];
+                $loginAdmin->loginUnico($id);
+            } else {
+                echo 'no llega el id login';
+            }
+            break;
     }
 }
-?>

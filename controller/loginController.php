@@ -38,7 +38,7 @@ class loginController
                     break;
             }
         } else {
-            echo 'usuario no encontrado';
+            echo false;
         }
     }
     public function getOut()

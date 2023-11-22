@@ -18,7 +18,7 @@ class ComprasController
         $json = array();
         while ($datos = mysqli_fetch_array($consulta)) {
             $json[] = array(
-                "cantidad" => $datos["cantidad"],
+                "cantidad" => $datos["cantidad_stock"],
                 "id_producto" => $datos["id_producto"],
                 "nombre" => $datos["nombre"],
                 "descripcion" => $datos["descripcion"],

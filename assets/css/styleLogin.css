@@ -18,6 +18,7 @@
     height: 100vh;
 }
 .error{
+    position: relative;
     border: 2px solid var(--background);
     background-color: #e61919;
     color: black;
@@ -27,6 +28,7 @@
     text-align: center;
     font-size: 15px;
     font-weight: bold;
+    z-index: 1;
 }
 
 /*LOGIN CSS*/

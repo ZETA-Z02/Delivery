@@ -130,7 +130,7 @@ $(function () {
     let id = $(element).attr("idpersonal");
     console.log(id);
     $.post(
-      "http://localhost/delivery/controller/ZetaControllerMaster.php?actionPersonal=personalUnico",
+      "http://localhost/delivery/controller/ZetaControllerMaster.php?actionLoginAdmin=loginUnico",
       { id },
       function (response) {
         console.log(response);

@@ -1,4 +1,5 @@
 <?php
+require_once('conexion.php');
 class ProductosAdminModel{
     private $conn;
     public function __construct(){

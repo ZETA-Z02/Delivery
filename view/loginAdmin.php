@@ -21,6 +21,7 @@ include("../other/header.php");
                     <th>id_cliente</th>
                     <th>id_personal</th>
                     <th>nivel</th>
+                    <th colspan="2">acciones</th>
                 </tr>
             </thead>
             <tbody id="mostrarLogin"></tbody>
@@ -29,15 +30,15 @@ include("../other/header.php");
     <!-- contenedor para distribuir el formulario y el buscador  -->
     <div class="container-personal layout">
         <div class="form-agregar">
-            <form action="" id="personal-form">
+            <form action="" id="login-form">
                 <div class="layout-grid8">
                     <div class="text-field">
                         <label for="">
                             <h3>Agregar</h3>
                         </label>
                         <span>personal a crear login
-                            <select name="personal" id="personal">
-                                <option value="">Personal name</option>
+                            <select name="login" id="login">
+                                <option id="" value=""></option>
                             </select>
                         </span>
                     </div>
@@ -45,15 +46,15 @@ include("../other/header.php");
                         <label for="">
                             <h3>Editar</h3>
                         </label>
-                        <input type="text" id="apellido" class="form-control" placeholder="Apellidos"></input>
+                        <input type="number" id="nivel" class="form-control" placeholder="nivel" max="3" min="1"></input>
                     </div>
                     <div class="text-field">
-                        <input type="text" id="dni" class="form-control" placeholder="DNI"></input>
+                        <input type="text" id="usuario" class="form-control" placeholder="usuario"></input>
                     </div>
                     <div class="text-field">
-                        <input type="text" id="telefono" class="form-control" placeholder="Telefono"></input>
+                        <input type="text" id="password" class="form-control" placeholder="password"></input>
                     </div>
-                    <input type="hidden" id="idPersonal">
+                    <input type="hidden" id="idLogin">
                     <div>
                         <button type="submit" class="my-form__button">
                             Guardar
@@ -68,7 +69,7 @@ include("../other/header.php");
                     <h4>BUSCAR PERSONAL</h4>
                 </label>
                 <form action="">
-                    <input name="buscar" id="buscar" class="form-control mr-sm-2" type="search" placeholder="Buscar Personal" aria-label="Search">
+                    <input name="buscar" id="buscar" class="form-control mr-sm-2" type="search" placeholder="Buscar Login" aria-label="Search">
                     <button class="my-form__button" type="submit">Buscar</button>
                 </form>
             </div>
