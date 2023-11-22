@@ -8,7 +8,7 @@ class AlmacenAdminModel{
         return $this->conn;
     }
     public function read(){
-        $sql = 'SELECT p.nombre, p.marca, p.contenido, a.cantidad, a.fecha_ultima_actualizacion 
+        $sql = 'SELECT p.nombre, p.marca, p.contenido, a.cantidad_stock, a.fecha_ultima_actualizacion 
         FROM almacen a 
         INNER JOIN productos p 
         ON a.id_producto = p.id_producto;';

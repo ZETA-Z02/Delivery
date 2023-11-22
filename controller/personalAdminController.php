@@ -10,7 +10,8 @@ class PersonalAdminController{
     public function Read(){
         $data = $this->consultaAccion->read();
         $json = array();
-        while ($row = mysqli_fetch_array($data)){
+        
+        while ($row = $data->fetch_array(MYSQLI_ASSOC)){
             $json[]=array(
                 "id"=> $row["id_personal"],
                 "nombre"=> $row["nombre"],

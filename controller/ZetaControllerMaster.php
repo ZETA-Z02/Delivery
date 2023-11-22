@@ -8,6 +8,8 @@ require_once("./almacenController.php");
 require_once("./repartidorAdminController.php");
 require_once("./comprasController.php");
 require_once("./loginController.php");
+require_once("./inventarioAdminController.php");
+require_once("./loginAdminController.php");
 
 
 // cada pagina enviara por la url un dato distinto para que se obtenga aqui y se maneje ordenadamente todas las acciones
@@ -295,7 +297,7 @@ if (isset($_GET['actionRepartidor']) && !empty($_GET['actionRepartidor'])) {
 }
 
 //Pagina Compras Acciones, acciones deben ser con una SESSION INICIADA
-if (!empty($_GET['actionCompras']) && !empty($_GET['actionCompras'])) {
+if (isset($_GET['actionCompras']) && !empty($_GET['actionCompras'])) {
     $action = $_GET['actionCompras'];
     //echo 'accion cliente '.$action;
     $comprasView = new ComprasController();
@@ -305,16 +307,22 @@ if (!empty($_GET['actionCompras']) && !empty($_GET['actionCompras'])) {
             $comprasView->index();
             break;
         case 'pedidoEnviado':
-            $pedidoArray = $_POST['data'];
-            echo $pedidoArray['descripcion'].' '.$pedidoArray['opcion_pago'].' '.$pedidoArray['totalJavas'].' '.$pedidoArray['productos'].' '.'nada';
-            //$comprasView->pedido();
+                $pedido = $_POST['data'];
+                //datos
+                $descripcion = $pedido['descripcion'];
+                $opcionPago = $pedido['opcion_pago'];
+                $totalJavas = $pedido['totalJavas'];
+                $productos = $pedido['productos'];
+                //echo $descripcion.' '.$opcionPago.' '.$totalJavas.' '.$productos;
+                //public function pedido($opcionPago,$totalJavas,$descripcion = null)
+                $comprasView->pedido($opcionPago,$totalJavas,$descripcion,$productos);
             break;
     }
 }
 
 //PAGINA LOGIN ACCIONES- PARA INGRESAR Y DECLARAR LA VARIABLE SESSION DEPENDIENDO EL NIVEL DE USUARIO
 //SE PODRIA UTILIZAR ESTE MISMO PARA CERRAR SESION, CON EL MISMO CONTROLLADOR LOGIN-EXIT
-if (!empty($_GET['actionLogin']) && !empty($_GET['actionLogin'])) {
+if (isset($_GET['actionLogin']) && !empty($_GET['actionLogin'])) {
     $action = $_GET['actionLogin'];
     //echo 'accion login '.$action;
     $loginView = new LoginController();
@@ -330,6 +338,63 @@ if (!empty($_GET['actionLogin']) && !empty($_GET['actionLogin'])) {
                 echo 'alguno de los datos esta vacio o nulos';
             }            
             break;
+    }
+}
+
+//PAGINA INVENTARIO, ACCIONES: AGREGAR NUEVO INVENTARI(ENTRADA DE PRODUCTOS), VER INVENTARIO 
+if (isset($_GET['actionInventario']) && !empty($_GET['actionInventario'])) {
+    $action = $_GET['actionInventario'];
+    //echo 'accion inventario '.$action;
+    $inventarioAdmin= new InventarioAdminController();
+    switch ($action) {
+        case 'mostrarInventario':
+            $inventarioAdmin->read();
+            break;
+        case 'mostrarProductos':
+            //echo 'llega';
+            $inventarioAdmin->readProductos();
+            break;
+        case 'mostrarRepartidores';
+            //echo 'llega param ostrar repartidores';
+            $inventarioAdmin->readRepartidores();
+            break;
+        case 'guardarInventario':
+            if(!empty($_POST['producto']) && !empty($_POST['repartidor']) && !empty($_POST['cantidad']) && !empty($_POST['fecha'])){
+                $inventarioAdmin->create($_POST['producto'],$_POST['fecha'],$_POST['cantidad'],$_POST['repartidor']);
+            }else{
+                echo "error: datos vacios";
+            }
+            break;
+        
+    }
+}
+
+//PAGINA LOGIN ADMIN PARA CRUD DE LOGIN Y REGISTRAR LOGIN DE UN NUEVO PERSONAL
+if (isset($_GET['actionLoginAdmin']) && !empty($_GET['actionLoginAdmin'])) {
+    $action = $_GET['actionLoginAdmin'];
+    echo 'accion login '.$action;
+    $loginAdmin = new LoginAdminController();
+    switch ($action) {
+        case 'mostrarLogin':
+            echo 'mostrar login';
+            // $loginAdmin->read();
+            break;
+        case 'mostrarProductos':
+            //echo 'llega';
+            $inventarioAdmin->readProductos();
+            break;
+        case 'mostrarRepartidores';
+            //echo 'llega param ostrar repartidores';
+            $inventarioAdmin->readRepartidores();
+            break;
+        case 'guardarInventario':
+            if(!empty($_POST['producto']) && !empty($_POST['repartidor']) && !empty($_POST['cantidad']) && !empty($_POST['fecha'])){
+                $inventarioAdmin->create($_POST['producto'],$_POST['fecha'],$_POST['cantidad'],$_POST['repartidor']);
+            }else{
+                echo "error: datos vacios";
+            }
+            break;
+        
     }
 }
 ?>

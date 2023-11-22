@@ -154,7 +154,7 @@ $(function () {
   function vaciarCarrito() {
     // Limpiamos los productos guardados
     carrito = [];
-    console.log(carrito);
+    //console.log(carrito);
     const articleProduct = document.querySelector(".carritoProducts");
     articleProduct.innerHTML = "";
     // Renderizamos los cambios
@@ -178,6 +178,19 @@ $(function () {
     fila.find("#subtotal").text(subtotal.toFixed(2));
     // Recalcular y mostrar el total general
   });
+  $(document).on("change", ".cantidad", function() {
+    // Obtener el valor del input y convertirlo a un número
+    const cantidad = parseInt($(this).val());
+
+    // Obtener el precio unitario de la fila actual
+    const precioUnitario = parseFloat($(this).closest("tr").find("#precioUni").text());
+
+    // Calcular el subtotal multiplicando la cantidad por el precio unitario
+    const subtotal = cantidad * precioUnitario;
+
+    // Actualizar el contenido de la celda de subtotal
+    $(this).closest("tr").find(".subtotal").text(subtotal.toFixed(2)); // Puedes ajustar el número de decimales según tus necesidades
+});
 
   mostrarProductos();
 
@@ -214,16 +227,25 @@ $(function () {
         method: "POST",
         data: { data: datos },
         success: function (response) {
-          console.log(response);
-          
-          //limpia el carrito al enviar correctamente el pedido
-          $(".carritoProducts").empty();
-          $(".total-enviar").empty();
-          carrito=[];
+          //hacer mensaje modal para confirmacion del pedido 
+          if(response==true){
+            //console.log('pedido exitoso');
+            alert('pedido exitoso');
+            vaciarCarrito();
+          }else if(response==false){
+            alert('pedido fallido');
+            console.log('pedido fallido');
+            vaciarCarrito();
+          }else{
+            alert('falta personal-intente de nuevo mas tarde');
+            vaciarCarrito();
+          }
+          //limpia el carrito al enviar correctamente el pedido 
         },
         error: function () {
           //un alert o otro mensaje para decir que se cancelo todo
-          console.log("error en el servidor no se envia datos");
+          alert('el pedido fallo-intentar de nuevo');
+          //console.log("error en el servidor no se envia datos");
         },
       });
     }

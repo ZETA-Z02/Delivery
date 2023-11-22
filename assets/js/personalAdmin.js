@@ -100,7 +100,6 @@ $(function () {
             `;
         });
         $("#mostrarPersonal").html(template);
-
         //}
       },
     });

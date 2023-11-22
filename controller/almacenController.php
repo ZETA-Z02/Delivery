@@ -16,12 +16,11 @@ class AlmacenController{
                 "marca"=> $row["marca"],
                 "contenido"=> $row["contenido"],
                 "fecha"=> $row["fecha_ultima_actualizacion"],
-                "cantidad"=> $row["cantidad"],
+                "cantidad"=> $row["cantidad_stock"],
             );
         }
         $jsonstring = json_encode($json);
         echo $jsonstring;
-
     }
     public function create(){
 
