@@ -33,9 +33,9 @@ class LoginAdminModel{
         return $data;
     }
     public function Update($usuario,$password,$id_personal,$nivel){
-        $sql = "UPDATE login SET usuario='$usuario',password='$password',id_personal='$id_personal',nivel='nivel';";
-        $data = $this->conn->ConsultaArray($sql);
-        return $data;
+        $sql = "UPDATE login SET usuario='$usuario',password='$password',id_personal='$id_personal',nivel='$nivel';";
+        $result = $this->conn->ConsultaSin($sql);
+        return $result;
     }
 }
 

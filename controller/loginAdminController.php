@@ -50,8 +50,14 @@ class LoginAdminController {
         $jsonData = json_encode($data);
         echo $jsonData;
     }
-    public function update() {
-
+    public function update($usuario,$password,$id_personal,$nivel) {
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+        $result = $this->consultaAccion->Update($usuario,$passwordHash,$id_personal,$nivel);
+        if($result){
+            echo 'se actualizo correctamente el login';
+        }else{
+            echo 'error en actualizar';
+        }
                 
     }
     public function delete() {

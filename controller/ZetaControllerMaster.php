@@ -398,11 +398,10 @@ if (isset($_GET['actionLoginAdmin']) && !empty($_GET['actionLoginAdmin'])) {
             }
             break;
         case 'editarLogin':
-            if (isset($_POST['id']) && !empty('id')) {
-                $id = $_POST['id'];
-                $loginAdmin->loginUnico($id);
+            if (!empty($_POST['usuario']) && !empty($_POST['password']) && !empty($_POST['id_personal']) && !empty($_POST['nivel'])) {
+                $loginAdmin->update($_POST['usuario'],$_POST['password'],$_POST['id_personal'],$_POST['nivel']);
             } else {
-                echo 'no llega el id login';
+                echo 'no llega los datos para actualizar';
             }
             break;
     }
