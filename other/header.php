@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/styleAdmin.css" />
+  <script src="../node_modules/chart.js/dist/chart.umd.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 </head>

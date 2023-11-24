@@ -29,23 +29,27 @@ $(function () {
       },
     });
   }
-  $.ajax({
-    url: "http://localhost/delivery/controller/ZetaControllerMaster.php?actionLoginAdmin=mostrarPersonalLogin",
-    type: "GET",
-    success: function (response) {
-      //console.log(response);
-      //JSON.parse(response){
-      let personalAll = JSON.parse(response);
-      let template = "";
-      personalAll.forEach((personal) => {
-        template += `
-            <option value="${personal.id_personal}">${personal.nombres}</option>
-              `;
-      });
-      $("#login").html(template);
-      //}
-    },
-  });
+
+  function mostrarNombresPersonal(){
+    $.ajax({
+      url: "http://localhost/delivery/controller/ZetaControllerMaster.php?actionLoginAdmin=mostrarPersonalLogin",
+      type: "GET",
+      success: function (response) {
+        //console.log(response);
+        //JSON.parse(response){
+        let personalAll = JSON.parse(response);
+        let template = "";
+        personalAll.forEach((personal) => {
+          template += `
+              <option value="${personal.id_personal}">${personal.nombres}</option>
+                `;
+        });
+        $("#login").html(template);
+        //}
+      },
+    });
+  }
+  
 
   //guardar-login
   $("#login-form").submit(function (e) {
@@ -53,7 +57,7 @@ $(function () {
     const postData = {
       usuario: $("#usuario").val(),
       password: $("#password").val(),
-      id_personal: $("#login").val(),
+      id_login: $("#login").val(),
       nivel: $("#nivel").val(),
     };
 
@@ -64,10 +68,10 @@ $(function () {
     console.log(postData, url);
     
     $.post(url, postData, function (response) {
-      console.log(response);
-      mostrarLogin();
-
+      //console.log(response);
       $("#login-form").trigger("reset");
+      mostrarLogin();
+      mostrarNombresPersonal();
     });
     e.preventDefault();
   });
@@ -81,21 +85,42 @@ $(function () {
       "http://localhost/delivery/controller/ZetaControllerMaster.php?actionLoginAdmin=unicoLogin",
       { id },
       function (response) {
-        console.log(response);
+        //console.log(response);
         const login = JSON.parse(response);
+        console.log(login);
         $("#usuario").val(login.usuario);
         $("#password").val(login.password);
         $("#nivel").val(login.nivel);
-        $("#idLogin").val(login.id_login);
-        //$("#login").val(login.id_personal);
+        // $("#idLogin").val(login.id_login);
+        // $("#nombre").val(login.nombre);
         let template = "";
           template += `
-              <option value="${login.id_personal}">${login.nombres}</option>
+              <option value="${login.id_login}">${login.nombre}</option>
                 `;
         $("#login").html(template);
         edit = true;
       }
     );
   });
+
+    //AJAX para eliminar un login, Funciona
+    $(document).on("click", ".eliminar-login", function () {
+      if (confirm("Are you sure you want to delete it?")) {
+        // console.log('clicked');
+        // console.log($(this));
+        let element = $(this)[0].parentElement.parentElement;
+        let id = $(element).attr("idlogin");
+        console.log(id);
+        $.post(
+          "http://localhost/delivery/controller/ZetaControllerMaster.php?actionLoginAdmin=eliminarLogin",
+          { id },
+          function (response) {
+            console.log(response);
+            mostrarLogin();
+          }
+        );
+      }
+    });
   mostrarLogin();
+  mostrarNombresPersonal();
 });

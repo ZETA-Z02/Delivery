@@ -1,13 +1,11 @@
-<?php
-#acciones que se hara con los pedidos, el admin podra visualizar todos los pedidos y hacer acciones como buscar o eliminar(con RESTRICCIONES)
-require_once("../model/pedidosAdminModel.php");
-class PedidosController
-{
+<?php 
+#acciones que se hara con los productos, Pagina Admin Productos
+require_once("../model/personalViewModel.php");
+class PersonalViewController{
     private $consultaAccion;
-    public function __construct()
-    {
-        $this->consultaAccion = new PedidosAdminModel();
-        return $this->consultaAccion;
+    public function __construct() {
+    $this->consultaAccion = new PersonalViewModel();
+    return $this->consultaAccion;
     }
     public function index()
     {
@@ -19,6 +17,7 @@ class PedidosController
                 "id_cliente"=>$row['id_cliente'],
                 "destino"=>$row['destino'],
                 "id_personal"=>$row['id_personal'],
+                "estado"=>$row['estado'],
             );
         }
         $jsonData = json_encode($json);
@@ -41,7 +40,12 @@ class PedidosController
         $jsonData = json_encode($json);
         echo $jsonData;
     }
+    public function update($id){
+        $result = $this->consultaAccion->Update($id);
+        if($result){
+            echo "se actualizo correctamente";
+        }else{
+            echo "error en actualizar";
+        }
+    }
 }
-
-// $clase = new PedidosController();
-// echo $clase->index();

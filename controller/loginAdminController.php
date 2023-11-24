@@ -47,12 +47,23 @@ class LoginAdminController {
     }
     public function loginUnico($id){
         $data = $this->consultaAccion->LoginUnico($id);
-        $jsonData = json_encode($data);
+        $dataPersonal = $this->consultaAccion->LoginUnicoNombre($id);
+        $data["nombre"]=$dataPersonal['nombres'];
+        // $dataArray=array();
+        // $dataArray[]=array(
+        //     "usuario"=>$data['usuario'],
+        //     "password"=>$data['password'],
+        //     "nivel"=>$data['nivel'],
+        //     "id_login"=>$data['id_login'],
+        //     "nombre"=>$dataPersonal['nombres']
+        // );
+        
+        $jsonData = json_encode($data, JSON_FORCE_OBJECT);
         echo $jsonData;
     }
-    public function update($usuario,$password,$id_personal,$nivel) {
+    public function update($usuario,$password,$id_login,$nivel) {
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-        $result = $this->consultaAccion->Update($usuario,$passwordHash,$id_personal,$nivel);
+        $result = $this->consultaAccion->Update($usuario,$passwordHash,$id_login,$nivel);
         if($result){
             echo 'se actualizo correctamente el login';
         }else{
@@ -60,8 +71,13 @@ class LoginAdminController {
         }
                 
     }
-    public function delete() {
-        
+    public function delete($id) {
+        $result = $this->consultaAccion->Delete($id);
+        if($result){
+            echo "borrado correctamente";
+        }else{
+            echo "no se logro borrar";
+        }     
     }
 }
 

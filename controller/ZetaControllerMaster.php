@@ -10,6 +10,10 @@ require_once("./comprasController.php");
 require_once("./loginController.php");
 require_once("./inventarioAdminController.php");
 require_once("./loginAdminController.php");
+require_once("./pedidosController.php");
+require_once("./personalViewController.php");
+require_once("./registroController.php");
+require_once("./dashboardController.php");
 
 
 // cada pagina enviara por la url un dato distinto para que se obtenga aqui y se maneje ordenadamente todas las acciones
@@ -383,8 +387,8 @@ if (isset($_GET['actionLoginAdmin']) && !empty($_GET['actionLoginAdmin'])) {
             $loginAdmin->readPersonal();
             break;
         case 'guardarLogin':
-            if (!empty($_POST['usuario']) && !empty($_POST['password']) && !empty($_POST['id_personal']) && !empty($_POST['nivel'])) {
-                $loginAdmin->create($_POST['usuario'], $_POST['password'], $_POST['id_personal'], $_POST['nivel']);
+            if (!empty($_POST['usuario']) && !empty($_POST['password']) && !empty($_POST['id_login']) && !empty($_POST['nivel'])) {
+                $loginAdmin->create($_POST['usuario'], $_POST['password'], $_POST['id_login'], $_POST['nivel']);
             } else {
                 echo "error: datos vacios";
             }
@@ -398,11 +402,85 @@ if (isset($_GET['actionLoginAdmin']) && !empty($_GET['actionLoginAdmin'])) {
             }
             break;
         case 'editarLogin':
-            if (!empty($_POST['usuario']) && !empty($_POST['password']) && !empty($_POST['id_personal']) && !empty($_POST['nivel'])) {
-                $loginAdmin->update($_POST['usuario'],$_POST['password'],$_POST['id_personal'],$_POST['nivel']);
+            if (!empty($_POST['usuario']) && !empty($_POST['password']) && !empty($_POST['id_login']) && !empty($_POST['nivel'])) {
+                $loginAdmin->update($_POST['usuario'], $_POST['password'], $_POST['id_login'], $_POST['nivel']);
             } else {
                 echo 'no llega los datos para actualizar';
             }
+            break;
+        case 'eliminarLogin':
+            if (!empty($_POST['id'])) {
+                $id = $_POST['id'];
+                $loginAdmin->delete($id);
+            } else {
+                echo 'error, no llego el id';
+            }
+            break;
+    }
+}
+
+//PAGINA PEDIDOS ADMIN PARA VER TODOS LOS PEDIDOS
+if (isset($_GET['actionPedidos']) && !empty($_GET['actionPedidos'])) {
+    $action = $_GET['actionPedidos'];
+    //echo 'accion login '.$action;
+    $pedidosAdmin = new PedidosController();
+    switch ($action) {
+        case 'mostrarPedidos':
+            //echo 'mostrar pedidos';
+            echo $pedidosAdmin->index();
+            break;
+        case 'mostrarDetalles':
+            //echo 'llega';
+            $id = $_POST['id'];
+            $pedidosAdmin->readDetalles($id);
+            break;
+    }
+}
+
+//PAGINA PERSONAL VIEW PARA LA VISTA PERSONAL PODRA CAMBIAR EL ESTADO DE UN PEDIDO 
+if (isset($_GET['actionPersonalView']) && !empty($_GET['actionPersonalView'])) {
+    $action = $_GET['actionPersonalView'];
+    //echo 'accion login '.$action;
+    $personalView = new PersonalViewController();
+    switch ($action) {
+        case 'mostrarPedidosPendientes':
+            //echo 'mostrar pedidos';
+            echo $personalView->index();
+            break;
+        case 'mostrarDetalles':
+            //echo 'llega';
+            $id = $_POST['id'];
+            $personalView->readDetalles($id);
+            break;
+        case 'actualizarEstado':
+            $id = $_POST['id_pedido'];
+            $personalView->update($id);
+            break;
+    }
+}
+
+//PAGINA REGISTRO CLIENTE RECIBIR DATOS Y REGISTRAR CLIENTE
+if (isset($_GET['actionRegistro']) && !empty($_GET['actionRegistro'])) {
+    $action = $_GET['actionRegistro'];
+    //echo 'accion login '.$action;
+    $registro = new RegistroController();
+    switch ($action) {
+        case 'registrar':
+            //echo 'se registro';
+            $registro->create($_POST['nombre'],$_POST['apellido'],$_POST['dni'],$_POST['telefono'],$_POST['direccion'],$_POST['correo'],$_POST['usuario'],$_POST['password']);
+            break;
+    }
+}
+
+//PAGINA DASHBOARD ADMIN GRAFICOS
+if (isset($_GET['actionDashboard']) && !empty($_GET['actionDashboard'])) {
+    $action = $_GET['actionDashboard'];
+    //echo 'accion login '.$action;
+    $dashboard = new DashboardController();
+    switch ($action) {
+        case 'mostrarGraficos':
+            //echo 'se registro';
+            $dashboard->index();
             break;
     }
 }
