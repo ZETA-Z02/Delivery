@@ -482,5 +482,8 @@ if (isset($_GET['actionDashboard']) && !empty($_GET['actionDashboard'])) {
             //echo 'se registro';
             $dashboard->index();
             break;
+        case "generarPdf":
+            
+            break;
     }
 }

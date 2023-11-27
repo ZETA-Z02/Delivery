@@ -15,6 +15,10 @@ include("../other/header.php");
             <canvas id="myChart"></canvas>
         </div>
     </div>
+    <div class="generar">
+        <h1>generar pdf</h1>
+        <button>generar</button>
+    </div>
 </main>
 
 <script src="../assets/js/dashboard.js"></script>
