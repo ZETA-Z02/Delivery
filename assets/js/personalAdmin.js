@@ -80,7 +80,6 @@ $(function () {
       type: "GET",
       success: function (response) {
         //console.log(response);
-        //JSON.parse(response){
         let personalAll = JSON.parse(response);
         let template = "";
         personalAll.forEach((personal) => {
@@ -100,7 +99,6 @@ $(function () {
             `;
         });
         $("#mostrarPersonal").html(template);
-        //}
       },
     });
   }
