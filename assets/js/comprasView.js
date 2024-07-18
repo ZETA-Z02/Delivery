@@ -149,7 +149,6 @@ $(function () {
     articleProduct.innerHTML = "";
     mostrarCarrito();
   }
-
   //Para cancelar pedido, calcelar el carrito
   function vaciarCarrito() {
     // Limpiamos los productos guardados

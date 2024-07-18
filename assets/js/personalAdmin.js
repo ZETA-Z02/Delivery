@@ -19,9 +19,10 @@ $(function () {
           console.log(response);
           let personalBuscado = JSON.parse(response);
           let template = "";
-          console.log(personalBuscado);
+          //console.log(personalBuscado);
+          +
           personalBuscado.forEach((personalBus) => {
-            console.log(personalBus);
+            //console.log(personalBus);
             template += `
                 <tr idpersonal="${personalBus.id}">
                     <td>${personalBus.id}</td>
@@ -128,7 +129,7 @@ $(function () {
     let id = $(element).attr("idpersonal");
     console.log(id);
     $.post(
-      "http://localhost/delivery/controller/ZetaControllerMaster.php?actionLoginAdmin=loginUnico",
+      "http://localhost/delivery/controller/ZetaControllerMaster.php?actionPersonal=personalUnico",
       { id },
       function (response) {
         console.log(response);

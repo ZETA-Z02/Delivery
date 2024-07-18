@@ -1,5 +1,4 @@
 <?php
-
 #AQUI LLEGARAN LAS SOLICITUDES AJAX Y SE UTILIZARAN LAS CLASES DE LOS CONTROLLADORES PARA HACER LAS ACCIONES
 require_once("./personalAdminController.php");
 require_once("./clienteController.php");
